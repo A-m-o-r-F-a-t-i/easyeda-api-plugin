@@ -2,9 +2,9 @@
 
 简体中文 | [English](README.en.md)
 
-这是嘉立创 EDA 专业版本地 API 插件及其通信栈的私有源码仓库。当前主扩展为 **Enhanced API Gateway 1.1.5**。它在官方公开扩展 API 之上提供类型化 Protocol v2、精确工程/窗口/文档身份、PCB 变更代次、源码指纹、批处理保护和可恢复 Bridge 通信，供 AI 工具与本机嘉立创 EDA 可靠协作。
+这是嘉立创 EDA 专业版本地 API 插件及其通信栈的公开源码仓库。当前主扩展为 **Enhanced API Gateway 1.1.5**。它在官方公开扩展 API 之上提供类型化 Protocol v2、精确工程/窗口/文档身份、PCB 变更代次、源码指纹、批处理保护和可恢复 Bridge 通信，供 AI 工具与本机嘉立创 EDA 可靠协作。
 
-本仓库只管理 API 插件栈。AgentDock 中的 5 个 EasyEDA Skill 和 PCB MCP 分别位于独立私有仓库，由上层 `easyeda-ai-plugin` 通过 Git submodule 聚合。
+本仓库只管理 API 插件栈。AgentDock 中的 5 个 EasyEDA Skill 和 PCB MCP 分别位于独立公开仓库，由上层 `easyeda-ai-plugin` 通过 Git submodule 聚合。
 
 ## 组件
 
@@ -63,5 +63,5 @@ npm run package:extension
 
 ## 许可证与来源
 
-Gateway 基于 EasyEDA 官方 Apache-2.0 扩展项目持续开发，原始许可证保存在 [LICENSE](LICENSE) 和 `gateway-enhanced/LICENSE`。本私有仓库不会改变上游许可证、商标或第三方权利。
+Gateway 基于 EasyEDA 官方 Apache-2.0 扩展项目持续开发，原始许可证保存在 [LICENSE](LICENSE) 和 `gateway-enhanced/LICENSE`。本公开仓库不会改变上游许可证、商标或第三方权利。
 

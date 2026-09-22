@@ -2,9 +2,9 @@
 
 [简体中文](README.md) | English
 
-This private repository contains the local API extension and communication stack used with EasyEDA Pro. The primary extension is **Enhanced API Gateway 1.1.5**. It adds a typed Protocol v2, exact project/window/document identity, PCB change epochs, source fingerprints, guarded batches, and recoverable Bridge communication on top of the official public extension APIs.
+This public repository contains the local API extension and communication stack used with EasyEDA Pro. The primary extension is **Enhanced API Gateway 1.1.5**. It adds a typed Protocol v2, exact project/window/document identity, PCB change epochs, source fingerprints, guarded batches, and recoverable Bridge communication on top of the official public extension APIs.
 
-This repository owns only the API plugin stack. The five AgentDock EasyEDA Skills and the PCB MCP live in separate private repositories and are assembled by the parent `easyeda-ai-plugin` repository through Git submodules.
+This repository owns only the API plugin stack. The five AgentDock EasyEDA Skills and the PCB MCP live in separate public repositories and are assembled by the parent `easyeda-ai-plugin` repository through Git submodules.
 
 ## Components
 
@@ -63,5 +63,5 @@ See `gateway-enhanced/README.en.md` and `gateway-enhanced/FAQ.en.md` for extensi
 
 ## License and origin
 
-The Gateway is developed from EasyEDA's official Apache-2.0 extension project. The original license is preserved in [LICENSE](LICENSE) and `gateway-enhanced/LICENSE`. Keeping this repository private does not alter upstream licenses, trademarks, or third-party rights.
+The Gateway is developed from EasyEDA's official Apache-2.0 extension project. The original license is preserved in [LICENSE](LICENSE) and `gateway-enhanced/LICENSE`. Public visibility does not alter upstream licenses, trademarks, or third-party rights.
 
