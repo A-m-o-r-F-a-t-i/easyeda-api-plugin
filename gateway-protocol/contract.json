@@ -1,0 +1,109 @@
+{
+  "protocolVersion": 2,
+  "contractVersion": "2.0.0",
+  "targetFields": [
+    "windowId",
+    "projectUuid",
+    "documentUuid",
+    "tabId"
+  ],
+  "expectedFields": [
+    "generationId",
+    "changeEpoch",
+    "sourceHash"
+  ],
+  "operations": {
+    "system.capabilities": {
+      "version": 1,
+      "access": "read"
+    },
+    "target.inspect": {
+      "version": 1,
+      "access": "read"
+    },
+    "events.getState": {
+      "version": 1,
+      "access": "read"
+    },
+    "events.getSince": {
+      "version": 1,
+      "access": "read"
+    },
+    "pcb.read": {
+      "version": 1,
+      "access": "read"
+    },
+    "pcb.nativeBoardInfo": {
+      "version": 1,
+      "access": "read"
+    },
+    "pcb.exportDsn": {
+      "version": 1,
+      "access": "read"
+    },
+    "document.sourceHash": {
+      "version": 2,
+      "access": "read"
+    },
+    "document.createCheckpoint": {
+      "version": 2,
+      "access": "read"
+    },
+    "pcb.applyGeometryBatch": {
+      "version": 1,
+      "access": "write"
+    },
+    "pcb.applyTextBatch": {
+      "version": 1,
+      "access": "write"
+    },
+    "pcb.nativeTools": {
+      "version": 1,
+      "access": "conditional"
+    },
+    "pcb.constraints": {
+      "version": 1,
+      "access": "conditional"
+    },
+    "pcb.save": {
+      "version": 1,
+      "access": "write"
+    },
+    "pcb.drc": {
+      "version": 1,
+      "access": "read"
+    }
+  },
+  "limits": {
+    "pcbInfoUtf8Bytes": 1048576,
+    "dsnUtf8Bytes": 12582912,
+    "documentSourceBytes": 33554432,
+    "batchOperations": 24,
+    "journalEvents": 512,
+    "requestBodyBytes": 8388608,
+    "webSocketResponseBytes": 50331648,
+    "executionLedgerEntries": 1024
+  },
+  "errorCodes": [
+    "INVALID_REQUEST",
+    "CLIENT_UNSUPPORTED",
+    "TARGET_CHANGED",
+    "GENERATION_MISMATCH",
+    "EPOCH_MISMATCH",
+    "CONCURRENT_CHANGE",
+    "METHOD_FAILED",
+    "PARTIAL_SUCCESS",
+    "FILE_TOO_LARGE",
+    "TRANSFER_HASH_MISMATCH",
+    "WINDOW_DISCONNECTED",
+    "REQUEST_TIMEOUT",
+    "PERMISSION_DENIED",
+    "INTERNAL_ERROR"
+  ],
+  "documentFingerprint": {
+    "kind": "easyeda-pcb-content/v1",
+    "rawDigestField": "rawSha256",
+    "guardDigestField": "sha256",
+    "normalization": "DOCHEAD export-generated client/updateTime/version only; all other fields and body retained"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Gateway Protocol v2 HTTP RPC request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "operation",
+    "target"
+  ],
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "operation": {
+      "enum": [
+        "system.capabilities",
+        "target.inspect",
+        "events.getState",
+        "events.getSince",
+        "pcb.read",
+        "pcb.nativeBoardInfo",
+        "pcb.exportDsn",
+        "document.sourceHash",
+        "document.createCheckpoint",
+        "pcb.applyGeometryBatch",
+        "pcb.applyTextBatch",
+        "pcb.nativeTools",
+        "pcb.constraints",
+        "pcb.save",
+        "pcb.drc"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "windowId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "projectUuid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "documentUuid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "tabId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      },
+      "required": [
+        "windowId"
+      ]
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "generationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "bridgeGenerationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "changeEpoch": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sourceHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "arguments": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "operation": {
+            "not": {
+              "enum": [
+                "system.capabilities",
+                "target.inspect"
+              ]
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "target": {
+            "required": [
+              "windowId",
+              "projectUuid",
+              "documentUuid",
+              "tabId"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

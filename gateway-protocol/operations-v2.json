@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "easyeda-gateway-operations/v2.0",
+  "protocolVersion": 2,
+  "limits": {
+    "httpRequestBytes": 8388608,
+    "rpcResponseBytes": 16777216,
+    "eventQueuePerWindow": 2000,
+    "maximumRpcTimeoutMs": 300000
+  },
+  "operations": {
+    "system.capabilities": {
+      "mutates": false,
+      "target": "window",
+      "timeoutMs": 10000
+    },
+    "target.inspect": {
+      "mutates": false,
+      "target": "window",
+      "timeoutMs": 10000
+    },
+    "events.getState": {
+      "mutates": false,
+      "target": "pcb",
+      "timeoutMs": 10000
+    },
+    "pcb.nativeBoardInfo": {
+      "mutates": false,
+      "target": "pcb",
+      "timeoutMs": 60000,
+      "maximumUtf8Bytes": 1048576
+    },
+    "pcb.exportDsn": {
+      "mutates": false,
+      "target": "pcb",
+      "timeoutMs": 120000,
+      "maximumUtf8Bytes": 12582912
+    },
+    "document.sourceHash": {
+      "mutates": false,
+      "target": "document",
+      "timeoutMs": 60000,
+      "maximumSourceBytes": 33554432
+    }
+  },
+  "errorCodes": [
+    "INVALID_REQUEST",
+    "CLIENT_UNSUPPORTED",
+    "TARGET_CHANGED",
+    "EPOCH_MISMATCH",
+    "CONCURRENT_CHANGE",
+    "METHOD_FAILED",
+    "PARTIAL_SUCCESS",
+    "FILE_TOO_LARGE",
+    "TRANSFER_HASH_MISMATCH",
+    "WINDOW_DISCONNECTED",
+    "REQUEST_TIMEOUT",
+    "PERMISSION_DENIED",
+    "INTERNAL_ERROR"
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.amorfati.dev/easyeda/gateway-protocol-v2.schema.json",
+  "title": "EasyEDA Gateway Protocol v2 WebSocket message",
+  "oneOf": [
+    { "$ref": "#/$defs/handshake" },
+    { "$ref": "#/$defs/register" },
+    { "$ref": "#/$defs/legacyExecute" },
+    { "$ref": "#/$defs/legacyResult" },
+    { "$ref": "#/$defs/legacyError" },
+    { "$ref": "#/$defs/rpcRequest" },
+    { "$ref": "#/$defs/rpcResult" },
+    { "$ref": "#/$defs/rpcError" },
+    { "$ref": "#/$defs/event" },
+    { "$ref": "#/$defs/pingPong" }
+  ],
+  "$defs": {
+    "uuidLike": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "timestamp": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "protocolVersions": {
+      "type": "array",
+      "items": { "type": "integer", "enum": [1, 2] },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "windowTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["windowId"],
+      "properties": {
+        "windowId": { "$ref": "#/$defs/uuidLike" },
+        "projectUuid": { "$ref": "#/$defs/uuidLike" },
+        "documentUuid": { "$ref": "#/$defs/uuidLike" },
+        "tabId": { "$ref": "#/$defs/uuidLike" }
+      }
+    },
+    "pcbTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["windowId", "projectUuid", "documentUuid", "tabId"],
+      "properties": {
+        "windowId": { "$ref": "#/$defs/uuidLike" },
+        "projectUuid": { "$ref": "#/$defs/uuidLike" },
+        "documentUuid": { "$ref": "#/$defs/uuidLike" },
+        "tabId": { "$ref": "#/$defs/uuidLike" }
+      }
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "changeEpoch": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": { "type": ["boolean", "integer", "string", "array", "object", "null"] }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["documentUuid", "changeEpochBefore", "changeEpochAfter", "lastEventSequence"],
+      "properties": {
+        "documentUuid": { "type": ["string", "null"] },
+        "changeEpochBefore": { "type": "integer", "minimum": 0 },
+        "changeEpochAfter": { "type": "integer", "minimum": 0 },
+        "lastEventSequence": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "errorObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "INVALID_REQUEST",
+            "CLIENT_UNSUPPORTED",
+            "TARGET_CHANGED",
+            "EPOCH_MISMATCH",
+            "CONCURRENT_CHANGE",
+            "METHOD_FAILED",
+            "PARTIAL_SUCCESS",
+            "FILE_TOO_LARGE",
+            "TRANSFER_HASH_MISMATCH",
+            "WINDOW_DISCONNECTED",
+            "REQUEST_TIMEOUT",
+            "PERMISSION_DENIED",
+            "INTERNAL_ERROR"
+          ]
+        },
+        "message": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "retryable": { "type": "boolean" },
+        "details": {}
+      }
+    },
+    "handshake": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "service", "clientType", "timestamp"],
+      "properties": {
+        "type": { "const": "handshake" },
+        "service": { "const": "easyeda-bridge" },
+        "bridgeVersion": { "type": "string" },
+        "protocolVersions": { "$ref": "#/$defs/protocolVersions" },
+        "bridgeSessionId": { "type": "string" },
+        "clientType": { "enum": ["eda", "agent"] },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "register": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "windowId", "timestamp"],
+      "properties": {
+        "type": { "const": "register" },
+        "windowId": { "$ref": "#/$defs/uuidLike" },
+        "gatewayVersion": { "type": "string" },
+        "clientVersion": { "type": "string" },
+        "protocolVersions": { "$ref": "#/$defs/protocolVersions" },
+        "bridgeSessionId": { "type": "string" },
+        "capabilities": { "$ref": "#/$defs/capabilities" },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "legacyExecute": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["type", "id", "code"],
+      "properties": {
+        "type": { "const": "execute" },
+        "id": { "$ref": "#/$defs/uuidLike" },
+        "code": { "type": "string" },
+        "windowId": { "type": "string" },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "legacyResult": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["type", "id", "result"],
+      "properties": {
+        "type": { "const": "result" },
+        "id": { "$ref": "#/$defs/uuidLike" },
+        "result": {},
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "legacyError": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["type", "id", "error"],
+      "properties": {
+        "type": { "const": "error" },
+        "id": { "$ref": "#/$defs/uuidLike" },
+        "error": { "type": "string" },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "rpcRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id", "operation", "target", "arguments", "timestamp"],
+      "properties": {
+        "type": { "const": "rpc-request" },
+        "id": { "$ref": "#/$defs/uuidLike" },
+        "operation": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "target": { "$ref": "#/$defs/windowTarget" },
+        "expected": { "$ref": "#/$defs/expected" },
+        "arguments": { "type": "object" },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "rpcResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id", "operation", "result", "state", "timestamp"],
+      "properties": {
+        "type": { "const": "rpc-result" },
+        "id": { "$ref": "#/$defs/uuidLike" },
+        "operation": { "type": "string" },
+        "result": {},
+        "state": { "$ref": "#/$defs/state" },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "rpcError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id", "operation", "error", "timestamp"],
+      "properties": {
+        "type": { "const": "rpc-error" },
+        "id": { "$ref": "#/$defs/uuidLike" },
+        "operation": { "type": "string" },
+        "error": { "$ref": "#/$defs/errorObject" },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "eventItem": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "windowId", "sequence", "changeEpoch", "eventType", "items", "timestamp"],
+      "properties": {
+        "type": { "const": "event" },
+        "windowId": { "$ref": "#/$defs/uuidLike" },
+        "projectUuid": { "type": ["string", "null"] },
+        "documentUuid": { "type": ["string", "null"] },
+        "tabId": { "type": ["string", "null"] },
+        "sequence": { "type": "integer", "minimum": 1 },
+        "changeEpoch": { "type": "integer", "minimum": 0 },
+        "eventType": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "requestId": { "type": ["string", "null"] },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/eventItem" }, "maxItems": 2000 },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "pingPong": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["type", "timestamp"],
+      "properties": {
+        "type": { "enum": ["ping", "pong"] },
+        "id": { "type": "string" },
+        "timestamp": { "$ref": "#/$defs/timestamp" }
+      }
+    }
+  }
+}

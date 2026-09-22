@@ -1,0 +1,13 @@
+{
+  "name": "easyeda-bridge-server",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "start": "node bridge-server.mjs"
+  },
+  "dependencies": {
+    "ws": "8.18.3"
+  }
+}

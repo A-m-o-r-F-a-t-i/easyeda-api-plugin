@@ -1,0 +1,13 @@
+{
+  "name": "easyeda-shared-runtime",
+  "version": "2.0.3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "exports": {
+    "types": "./index.d.mts",
+    "default": "./index.mjs"
+  }
+}

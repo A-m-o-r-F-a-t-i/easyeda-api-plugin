@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "repository": "easyeda-api-plugin",
+  "components": {
+    "gateway": {
+      "name": "run-api-gateway-enhanced",
+      "version": "1.1.5",
+      "path": "gateway-enhanced"
+    },
+    "protocol": {
+      "name": "easyeda-gateway-protocol",
+      "version": 2,
+      "path": "gateway-protocol"
+    },
+    "runtime": {
+      "name": "easyeda-shared-runtime",
+      "version": "2.0.3",
+      "path": "eda-runtime"
+    },
+    "bridge": {
+      "name": "easyeda-bridge-server",
+      "version": "2.0.0",
+      "path": "bridge-server"
+    }
+  }
+}
+

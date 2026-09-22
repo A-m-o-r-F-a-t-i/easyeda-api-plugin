@@ -1,0 +1,203 @@
+{
+	"name": "run-api-gateway-enhanced",
+	"uuid": "996f096c907b49e289b315a73d7ecd00",
+	"displayName": "Enhanced API Gateway",
+	"description": "为 AI 工具提供兼容 v1 的类型化 Protocol v2、精确目标校验和 PCB 变更代次",
+	"version": "1.1.5",
+	"publisher": "AmorFati",
+	"engines": {
+		"eda": "~3.2.0"
+	},
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/A-m-o-r-F-a-t-i/easyeda-api-plugin.git"
+	},
+	"categories": "Other",
+	"keywords": [
+		"API",
+		"Gateway",
+		"Bridge",
+		"AI"
+	],
+	"images": {
+		"logo": "./images/logo.jpg"
+	},
+	"homepage": "https://github.com/A-m-o-r-F-a-t-i/easyeda-api-plugin",
+	"bugs": "https://github.com/A-m-o-r-F-a-t-i/easyeda-api-plugin/issues",
+	"activationEvents": {
+		"onStartupFinished": true
+	},
+	"entry": "./dist/index",
+	"dependentExtensions": {},
+	"headerMenus": {
+		"home": [
+			{
+				"id": "Enhanced API Gateway",
+				"title": "Enhanced API Gateway",
+				"menuItems": [
+					{
+						"id": "Reconnect",
+						"title": "Reconnect",
+						"registerFn": "reconnect"
+					},
+					{
+						"id": "StopConnection",
+						"title": "Stop Connection",
+						"registerFn": "stopConnection"
+					},
+					{
+						"id": "ToggleAutoConnect",
+						"title": "Toggle Auto-Connect Status",
+						"registerFn": "toggleAutoConnect"
+					},
+					{
+						"id": "About",
+						"title": "About...",
+						"registerFn": "about"
+					}
+				]
+			}
+		],
+		"blank": [
+			{
+				"id": "Enhanced API Gateway",
+				"title": "Enhanced API Gateway",
+				"menuItems": [
+					{
+						"id": "Reconnect",
+						"title": "Reconnect",
+						"registerFn": "reconnect"
+					},
+					{
+						"id": "StopConnection",
+						"title": "Stop Connection",
+						"registerFn": "stopConnection"
+					},
+					{
+						"id": "ToggleAutoConnect",
+						"title": "Toggle Auto-Connect Status",
+						"registerFn": "toggleAutoConnect"
+					},
+					{
+						"id": "About",
+						"title": "About...",
+						"registerFn": "about"
+					}
+				]
+			}
+		],
+		"sch": [
+			{
+				"id": "Enhanced API Gateway",
+				"title": "Enhanced API Gateway",
+				"menuItems": [
+					{
+						"id": "Reconnect",
+						"title": "Reconnect",
+						"registerFn": "reconnect"
+					},
+					{
+						"id": "StopConnection",
+						"title": "Stop Connection",
+						"registerFn": "stopConnection"
+					},
+					{
+						"id": "ToggleAutoConnect",
+						"title": "Toggle Auto-Connect Status",
+						"registerFn": "toggleAutoConnect"
+					},
+					{
+						"id": "About",
+						"title": "About...",
+						"registerFn": "about"
+					}
+				]
+			}
+		],
+		"symbol": [
+			{
+				"id": "Enhanced API Gateway",
+				"title": "Enhanced API Gateway",
+				"menuItems": [
+					{
+						"id": "Reconnect",
+						"title": "Reconnect",
+						"registerFn": "reconnect"
+					},
+					{
+						"id": "StopConnection",
+						"title": "Stop Connection",
+						"registerFn": "stopConnection"
+					},
+					{
+						"id": "ToggleAutoConnect",
+						"title": "Toggle Auto-Connect Status",
+						"registerFn": "toggleAutoConnect"
+					},
+					{
+						"id": "About",
+						"title": "About...",
+						"registerFn": "about"
+					}
+				]
+			}
+		],
+		"pcb": [
+			{
+				"id": "Enhanced API Gateway",
+				"title": "Enhanced API Gateway",
+				"menuItems": [
+					{
+						"id": "Reconnect",
+						"title": "Reconnect",
+						"registerFn": "reconnect"
+					},
+					{
+						"id": "StopConnection",
+						"title": "Stop Connection",
+						"registerFn": "stopConnection"
+					},
+					{
+						"id": "ToggleAutoConnect",
+						"title": "Toggle Auto-Connect Status",
+						"registerFn": "toggleAutoConnect"
+					},
+					{
+						"id": "About",
+						"title": "About...",
+						"registerFn": "about"
+					}
+				]
+			}
+		],
+		"footprint": [
+			{
+				"id": "Enhanced API Gateway",
+				"title": "Enhanced API Gateway",
+				"menuItems": [
+					{
+						"id": "Reconnect",
+						"title": "Reconnect",
+						"registerFn": "reconnect"
+					},
+					{
+						"id": "StopConnection",
+						"title": "Stop Connection",
+						"registerFn": "stopConnection"
+					},
+					{
+						"id": "ToggleAutoConnect",
+						"title": "Toggle Auto-Connect Status",
+						"registerFn": "toggleAutoConnect"
+					},
+					{
+						"id": "About",
+						"title": "About...",
+						"registerFn": "about"
+					}
+				]
+			}
+		]
+	}
+}

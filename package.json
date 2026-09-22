@@ -1,0 +1,20 @@
+{
+  "name": "easyeda-api-plugin-workspace",
+  "version": "1.1.5",
+  "private": true,
+  "description": "Enhanced EasyEDA Pro API Gateway, typed protocol, shared runtime and local Bridge workspace",
+  "engines": {
+    "node": ">=20.17.0"
+  },
+  "scripts": {
+    "bootstrap": "npm ci --prefix gateway-enhanced && npm ci --prefix bridge-server",
+    "test:protocol": "node gateway-protocol/test-protocol.mjs",
+    "test:runtime": "npm test --prefix eda-runtime",
+    "test:gateway": "npm test --prefix gateway-enhanced",
+    "test:bridge": "npm test --prefix bridge-server",
+    "test": "npm run test:protocol && npm run test:runtime && npm run test:gateway && npm run test:bridge",
+    "build": "npm run compile --prefix gateway-enhanced",
+    "package:extension": "npm run build --prefix gateway-enhanced"
+  }
+}
+
