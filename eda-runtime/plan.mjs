@@ -343,6 +343,7 @@ export function validatePlan(raw) {
   } else if(/^(line|arc|pad|via|component|pour)\.(modify|delete)$/.test(op.type)){
    const [kind,action]=op.type.split('.');assert(!(kind==='component'&&action==='delete'),'Component deletion belongs to explicit netlist/ECO workflow');
    const expected=normalizeFields(op.expected,kind,scale,true),set=action==='modify'?normalizeFields(op.set,kind,scale):null;
+   if(kind==='component'&&set&&set.primitiveLock===undefined)set.primitiveLock=false;
    if(set)assert(Object.keys(set).length>0,'Empty modification');
    const n={id:op.id,type:op.type,kind,primitiveId:string(op.primitiveId,'primitiveId'),expected,set};
    if(kind==='component'){
