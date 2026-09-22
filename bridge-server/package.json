@@ -8,6 +8,6 @@
     "start": "node bridge-server.mjs"
   },
   "dependencies": {
-    "ws": "8.18.3"
+    "ws": "8.21.3"
   }
 }
